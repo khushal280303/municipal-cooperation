@@ -34,6 +34,62 @@
   font-size: 14px;
 }
 
+/* Progress Steps */
+.progress-steps {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 30px;
+  gap: 20px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.4;
+}
+
+.step.active {
+  opacity: 1;
+}
+
+.step.completed {
+  opacity: 1;
+}
+
+.step span {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  background-color: #ddd;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.step.active span {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.step.completed span {
+  background-color: #28a745;
+}
+
+.step.completed span::after {
+  content: '✓';
+  font-size: 18px;
+}
+
+.step p {
+  margin: 0;
+  font-size: 12px;
+  color: #666;
+}
+
 .auth-form h2 {
   margin-bottom: 10px;
   color: #333;
@@ -72,6 +128,7 @@
   font-size: 14px;
   transition: border-color 0.3s;
   font-family: inherit;
+  box-sizing: border-box;
 }
 
 .form-group input:focus,
@@ -87,6 +144,49 @@
 .form-group textarea:disabled {
   background-color: #f5f5f5;
   cursor: not-allowed;
+}
+
+.phone-input-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.country-code {
+  padding: 12px;
+  background-color: #f5f5f5;
+  border-right: 1px solid #ddd;
+  color: #666;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.phone-input-group input {
+  border: none;
+  flex: 1;
+  margin: 0;
+  padding: 12px;
+}
+
+.phone-input-group input:focus {
+  box-shadow: none;
+}
+
+.otp-input {
+  font-size: 24px !important;
+  letter-spacing: 8px !important;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Courier New', monospace;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 5px;
+  color: #999;
+  font-size: 12px;
 }
 
 .form-row-two {
@@ -135,7 +235,8 @@
 
 .btn-primary,
 .btn-secondary,
-.btn-danger {
+.btn-danger,
+.btn-link {
   width: 100%;
   padding: 12px;
   border: none;
@@ -183,13 +284,46 @@
   background-color: #c82333;
 }
 
+.btn-link {
+  background: none;
+  color: #667eea;
+  text-decoration: none;
+  padding: 8px 0;
+  width: auto;
+  border: none;
+  font-size: 14px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.btn-link:hover:not(:disabled) {
+  text-decoration: underline;
+  color: #764ba2;
+}
+
+.otp-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.resend-timer {
+  margin: 0;
+  color: #666;
+  font-size: 13px;
+}
+
 .auth-links {
   text-align: center;
   margin-top: 20px;
   font-size: 14px;
 }
 
-.auth-links a {
+.auth-links a,
+.auth-links span {
   color: #667eea;
   text-decoration: none;
   margin: 0 8px;
@@ -197,13 +331,15 @@
   transition: color 0.3s;
 }
 
-.auth-links a:hover {
+.auth-links a:hover,
+.auth-links button:hover:not(:disabled) {
   text-decoration: underline;
   color: #764ba2;
 }
 
 .auth-links span {
   color: #999;
+  font-weight: normal;
 }
 
 @media (max-width: 768px) {
@@ -218,5 +354,13 @@
 
   .auth-form h2 {
     font-size: 18px;
+  }
+
+  .progress-steps {
+    gap: 10px;
+  }
+
+  .step p {
+    font-size: 10px;
   }
 }
