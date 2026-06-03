@@ -12,8 +12,10 @@
   border-radius: 10px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   width: 100%;
-  max-width: 450px;
+  max-width: 500px;
   padding: 40px;
+  max-height: 90vh;
+  overflow-y: auto;
 }
 
 .auth-header {
@@ -33,9 +35,16 @@
 }
 
 .auth-form h2 {
-  margin-bottom: 25px;
+  margin-bottom: 10px;
   color: #333;
   font-size: 20px;
+}
+
+.form-subtitle {
+  color: #999;
+  font-size: 13px;
+  margin-bottom: 25px;
+  margin-top: 0;
 }
 
 .form-group {
@@ -47,11 +56,13 @@
   margin-bottom: 8px;
   color: #333;
   font-weight: 500;
+  font-size: 14px;
 }
 
 .form-group input[type="email"],
 .form-group input[type="password"],
 .form-group input[type="text"],
+.form-group input[type="tel"],
 .form-group select,
 .form-group textarea {
   width: 100%;
@@ -60,6 +71,7 @@
   border-radius: 5px;
   font-size: 14px;
   transition: border-color 0.3s;
+  font-family: inherit;
 }
 
 .form-group input:focus,
@@ -77,6 +89,12 @@
   cursor: not-allowed;
 }
 
+.form-row-two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
 .form-group.checkbox {
   display: flex;
   align-items: center;
@@ -86,11 +104,13 @@
 .form-group.checkbox input[type="checkbox"] {
   width: auto;
   margin-right: 8px;
+  cursor: pointer;
 }
 
 .form-group.checkbox label {
   margin: 0;
   cursor: pointer;
+  font-weight: 400;
 }
 
 .error-message {
@@ -100,6 +120,7 @@
   border-radius: 5px;
   margin-bottom: 20px;
   border-left: 4px solid #c33;
+  font-size: 14px;
 }
 
 .success-message {
@@ -109,6 +130,7 @@
   border-radius: 5px;
   margin-bottom: 20px;
   border-left: 4px solid #3c3;
+  font-size: 14px;
 }
 
 .btn-primary,
@@ -171,12 +193,30 @@
   color: #667eea;
   text-decoration: none;
   margin: 0 8px;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
 .auth-links a:hover {
   text-decoration: underline;
+  color: #764ba2;
 }
 
 .auth-links span {
   color: #999;
+}
+
+@media (max-width: 768px) {
+  .auth-card {
+    max-width: 100%;
+    padding: 30px 20px;
+  }
+
+  .form-row-two {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-form h2 {
+    font-size: 18px;
+  }
 }
