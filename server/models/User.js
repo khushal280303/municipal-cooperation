@@ -25,7 +25,19 @@ const userSchema = new mongoose.Schema({
   },
   phone: String,
   address: String,
+  department: String,
+  designation: String,
+  employeeId: String,
+  status: {
+    type: String,
+    enum: ['active', 'inactive'],
+    default: 'active'
+  },
   createdAt: {
+    type: Date,
+    default: Date.now
+  },
+  updatedAt: {
     type: Date,
     default: Date.now
   }

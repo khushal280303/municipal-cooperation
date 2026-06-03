@@ -2,6 +2,9 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
+const authRoutes = require('./routes/auth');
+const leaveRoutes = require('./routes/leave');
+
 const app = express();
 
 // Middleware
@@ -14,8 +17,11 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running' });
 });
 
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/leaves', leaveRoutes);
+
 // Routes will be added here
-// app.use('/api/auth', require('./routes/auth'));
 // app.use('/api/complaints', require('./routes/complaints'));
 // app.use('/api/tax', require('./routes/tax'));
 // app.use('/api/waste', require('./routes/waste'));
