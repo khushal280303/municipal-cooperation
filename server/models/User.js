@@ -18,12 +18,21 @@ const userSchema = new mongoose.Schema({
     minlength: 6,
     select: false
   },
+  phone: {
+    type: String,
+    required: [true, 'Please provide a phone number'],
+    unique: true,
+    match: [/^[0-9]{10}$/, 'Phone number must be 10 digits']
+  },
+  phoneVerified: {
+    type: Boolean,
+    default: false
+  },
   role: {
     type: String,
     enum: ['citizen', 'staff', 'admin'],
     default: 'citizen'
   },
-  phone: String,
   address: String,
   department: String,
   designation: String,
