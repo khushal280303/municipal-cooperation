@@ -1,24 +1,73 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider } from './context/AuthContext';
+import PrivateRoute from './components/PrivateRoute';
+import Navigation from './components/Navigation';
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import LeaveApplication from './pages/LeaveApplication';
+import MyApplications from './pages/MyApplications';
 import './App.css';
 
 function App() {
   return (
-    <Router>
-      <div className="App">
-        <header className="header">
-          <h1>Municipal Cooperation System</h1>
-          <p>Streamlining Municipal Services</p>
-        </header>
-        <main>
-          <Routes>
-            <Route path="/" element={<div>Welcome Page</div>} />
-            <Route path="/dashboard" element={<div>Dashboard</div>} />
-            <Route path="/complaints" element={<div>Complaints</div>} />
-          </Routes>
-        </main>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <Routes>
+          {/* Public Routes */}
+          <Route path="/login" element={<Login />} />
+          
+          {/* Protected Routes */}
+          <Route
+            path="/"
+            element={
+              <PrivateRoute>
+                <>
+                  <Navigation />
+                  <Dashboard />
+                </>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <>
+                  <Navigation />
+                  <Dashboard />
+                </>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/leave-application"
+            element={
+              <PrivateRoute>
+                <>
+                  <Navigation />
+                  <LeaveApplication />
+                </>
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/my-applications"
+            element={
+              <PrivateRoute>
+                <>
+                  <Navigation />
+                  <MyApplications />
+                </>
+              </PrivateRoute>
+            }
+          />
+          
+          {/* Catch all - redirect to home */}
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
   );
 }
 
